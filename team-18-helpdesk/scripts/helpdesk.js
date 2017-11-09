@@ -26,9 +26,7 @@ window.addEventListener('load', () =>
     
         ticketContainer.innerHTML = '';
         
-        console.log(update);
-        
-        const tickets = Object.entries(update).sort((a, b) => b.callTime - a.callTime);
+        const tickets = Object.entries(update).sort((a, b) => b[1].callTime - a[1].callTime);
 
         tickets.forEach(ticket =>
         {

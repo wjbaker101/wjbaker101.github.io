@@ -8,13 +8,13 @@
         <title>View Ticket</title>
         
         <!-- Stylesheets and Fonts -->
-        <link rel="stylesheet" href="/team-18-helpdesk/style/webstyle.css">
+        <link rel="stylesheet" href="/src/style/webstyle.css">
         
         <!-- Inline Styling -->
         
         <!-- Scripts -->
-        <script src="/team-18-helpdesk/external/date-format.js"></script>
-        <script src="/team-18-helpdesk/scripts/new-ticket.js" defer></script>
+        <script src="/src/external/date-format.js"></script>
+        <script src="/src/scripts/new-ticket.js" defer></script>
         
         <!-- Inline Scripts -->
         <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
@@ -64,13 +64,20 @@
                     <input class="problem-hardware-input" type="text" placeholder="AHTF4567">
                 </div>
                 <div class="section">
-                    <strong>Problem Type:</strong><br>
-                    <select class="problem-type-input">
-                        <option selected disabled>Please select a problem type...</option>
-                        <option>Network</option>
-                        <option>Hardware</option>
-                        <option>Software</option>
-                    </select>
+                    <div class="section">
+                        <strong>Problem Type:</strong><br>
+                        <select class="problem-type-input">
+                            <option selected disabled>Please select a problem type...</option>
+                            <option>Network</option>
+                            <option>Hardware</option>
+                            <option>Software</option>
+                        </select>
+                        <input class="new-type-input" type="checkbox"> Create new problem type
+                    </div>
+                    <div class="new-type-container section hpadding-small hidden">
+                        <strong>Enter new problem type:</strong><br>
+                        <input class="new-problem-type" type="text">
+                    </div>
                 </div>
                 <div class="section">
                     <strong>Device Operating System:</strong><br>

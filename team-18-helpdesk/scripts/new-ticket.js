@@ -56,6 +56,13 @@ window.addEventListener('load', () =>
         document.querySelector('.employee-info-container').classList.toggle('hidden', employeeIDCheckbox.checked);
     });
     
+    const newTypeCheckbox = document.querySelector('.new-type-input');
+    
+    newTypeCheckbox.addEventListener('change', () =>
+    {
+        document.querySelector('.new-type-container').classList.toggle('hidden', !newTypeCheckbox.checked);
+    });
+    
     const newTicketButton = document.querySelector('.new-ticket-button');
     
     newTicketButton.addEventListener('click', () =>
@@ -88,14 +95,19 @@ window.addEventListener('load', () =>
         const problemOperatingSystem = document.querySelector('.problem-os-input').value;
         const problemSoftware = document.querySelector('.problem-software-input').value;
         const problemType = document.querySelector('.problem-type-input').value;
+        const newProblemType = document.querySelector('.new-problem-type').value;
         
         let newTicket =
         {
             callTime: (new Date()).getTime(),
             specialist: { id: '-KyAutZ8rUH8BBtLu6z9', name: 'Bob Harrison' },
             closed: false,
-            problemType: problemType,
+            problemType: (newTypeCheckbox.checked ? newProblemType : problemType),
         };
+        
+        if (callerName.length === 0) callerName = 'Jim Bob';
+        if (callerDepartment.length === 0) callerDepartment = 'Sales Team';
+        if (callerJob.length === 0) callerJob = 'Sales Assistant';
         
         let log =
         {
@@ -126,5 +138,7 @@ window.addEventListener('load', () =>
         {
             database.push(newTicket).child('logs').push(log);
         }
+        
+        //window.location.href = 'helpdesk.html';
     });
 });

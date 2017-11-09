@@ -43,7 +43,9 @@ window.addEventListener('load', () =>
                         <h3><strong>${formattedDate}</strong></h3>
                         <div class="clearfix">
                             <div class="float-left">
-                                <strong>Caller Name:</strong> John Smith
+                                <strong>Caller Name:</strong> ${log[1].caller.name} (<strong>ID: </strong> ${log[1].caller.id})<br>
+                                <strong>Job Title:</strong> ${log[1].caller.jobTitle}<br>
+                                <strong>Department:</strong> ${log[1].caller.department}<br>
                             </div>
                             <div class="float-right">
                                 <strong>Helpdesk Operator:</strong> Dan French
