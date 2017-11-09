@@ -86,9 +86,10 @@ window.addEventListener('load', () =>
         const database = firebase.database().ref('/tickets');
         
         const callerID = document.querySelector('.caller-id-input').value;
-        const callerName = document.querySelector('.caller-name-input').value;
-        const callerJob = document.querySelector('.caller-job-input').value;
-        const callerDepartment = document.querySelector('.caller-department-input').value;
+        let callerName = document.querySelector('.caller-name-input').value;
+        let callerJob = document.querySelector('.caller-job-input').value;
+        let callerDepartment = document.querySelector('.caller-department-input').value;
+        const callerPhone = document.querySelector('.caller-phone-input').value;
         
         const problemDescription = document.querySelector('.problem-description-input').value;
         const problemHardware = document.querySelector('.problem-hardware-input').value;
@@ -116,7 +117,8 @@ window.addEventListener('load', () =>
                 id: callerID,
                 name: callerName,
                 department: callerDepartment,
-                jobTitle: callerJob
+                jobTitle: callerJob,
+                phoneNumber: callerPhone
             },
             callTime: (new Date()).getTime(),
             operator: { name: 'Dan French' },

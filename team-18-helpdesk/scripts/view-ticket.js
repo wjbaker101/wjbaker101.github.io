@@ -46,6 +46,7 @@ window.addEventListener('load', () =>
                                 <strong>Caller Name:</strong> ${log[1].caller.name} (<strong>ID: </strong> ${log[1].caller.id})<br>
                                 <strong>Job Title:</strong> ${log[1].caller.jobTitle}<br>
                                 <strong>Department:</strong> ${log[1].caller.department}<br>
+                                <strong>Telephone Number:</strong> ${log[1].caller.phoneNumber}<br>
                             </div>
                             <div class="float-right">
                                 <strong>Helpdesk Operator:</strong> Dan French
