@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Meta Tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Specialist View</title>
+
+        <!-- Stylesheets and Fonts -->
+        <link rel="stylesheet" href="/src/style/webstyle.css">
+
+        <!-- Inline Styling -->
+        <style>
+            .ticket-container > div .top-content
+            {
+                border-bottom: 1px solid #ccc;
+            }
+        </style>
+
+        <!-- Scripts -->
+        <script src="/src/external/date-format.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-database.js"></script>
+        <script src="/src/scripts/specialist.js" defer></script>
+
+        <!-- Inline Scripts -->
+    </head>
+
+    <body>
+        <header class="hpadding-small vpadding-regular">
+            <div class="clearfix">
+                <div class="float-left">
+                    <span><strong>IT Specialist</strong></span>
+                </div>
+                <div class="float-right">
+                    <strong>Logged in as:</strong>
+                    <span class="current-username">Bob Harrison</span>
+                    <span><a href="login.html">(Switch)</a></span>
+                </div>
+            </div>
+        </header>
+        <div class="column-container content-width">
+            <div class="column l12 hpadding-small vpadding-regular">
+                <h1>Open Tickets:</h1>
+                <p>View tickets assigned to you:</p>
+                <p><strong>Click on an item to view the ticket:</strong></p>
+                <div class="ticket-container"></div>
+            </div>
+        </div>
+    </body>
+</html>

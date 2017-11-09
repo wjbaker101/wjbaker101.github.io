@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Meta Tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title></title>
+        
+        <!-- Stylesheets and Fonts -->
+        <link rel="stylesheet" href="/src/style/webstyle.css">
+        
+        <!-- Inline Styling -->
+        <style>
+            .ticket-container > div .top-content
+            {
+                border-bottom: 1px solid #ccc;
+            }
+        </style>
+        
+        <!-- Scripts -->
+        <script src="/src/external/date-format.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-database.js"></script>
+        <script src="/src/scripts/data.js"></script>
+        <script src="/src/scripts/helpdesk.js" defer></script>
+        
+        <!-- Inline Scripts -->
+        <script>
+        </script>
+    </head>
+    
+    <body>
+        <header class="hpadding-small vpadding-regular">
+            <div class="clearfix">
+                <div class="float-left">
+                    <span><strong>Helpdesk Operator</strong></span>
+                </div>
+                <div class="float-right">
+                    <strong>Logged in as:</strong>
+                    <span class="current-username">Dan French</span>
+                    <span><a href="login.html">(Switch)</a></span>
+                </div>
+            </div>
+        </header>
+        <div class="column-container content-width">
+            <!--<div class="column l6 hpadding-small vpadding-regular">
+                <h1>Create a new ticket</h1>
+                <h2>Caller Information:</h2>
+                <div class="section column-container">
+                    <div class="column hpadding-small">
+                        <strong>Forename:</strong><br>
+                        <input class="caller-forename-input" type="text" placeholder="Forename..." value="Jim" readonly>
+                    </div>
+                    <div class="column hpadding-small">
+                        <strong>Surname:</strong><br>
+                        <input class="caller-surname-input" type="text" placeholder="Surname..." value="Bob" readonly>
+                    </div>
+                </div>
+                <p><em>Caller will default to "Jim Bob" in the prototype, this is due to there not being a fleshed out employee list.</em></p>
+                <div class="section hpadding-small">
+                    <strong>Job Title:</strong><br>
+                    <input class="caller-job-input" type="text" placeholder="Job Title...">
+                </div>
+                <div class="section hpadding-small">
+                    <strong>Department:</strong><br>
+                    <input class="caller-department-input" type="text" placeholder="Department...">
+                </div>
+                <h2>Problem Information:</h2>
+                <div class="section hpadding-small">
+                    <strong>Hardware Serial Number:</strong><br>
+                    <input class="problem-hardware-input" type="text" placeholder="gy83oo19...">
+                </div>
+                <div class="section hpadding-small">
+                    <strong>Problem Type:</strong><br>
+                    <select class="problem-type-input">
+                        <option selected disabled>Please select a problem type...</option>
+                        <option>Network</option>
+                        <option>Hardware</option>
+                        <option>Software</option>
+                    </select>
+                </div>
+                <div class="section column-container">
+                    <div class="column hpadding-small">
+                        <strong>Device Operating System:</strong><br>
+                        <input class="problem-os-input" type="text" placeholder="Windows 10 v1.1.1...">
+                    </div>
+                    <div class="column hpadding-small">
+                        <strong>Software and Version:</strong><br>
+                        <input class="problem-software-input" type="text" placeholder="Word 2010 v1.1.1...">
+                    </div>
+                </div>
+                <h3>Description of the problem:</h3>
+                <div class="section hpadding-small">
+                    <textarea class="problem-description-input"></textarea>
+                </div>
+                <h2>Specialist Information:</h2>
+                <p><em>Due to this version being a prototype, all tickets will be assigned to "Bob Harrison".</em></p>
+                <p class="hpadding-small">Assign specialist now: <input class="assign-specialist-checkbox" type="checkbox"></p>
+                <div class="specialist-information hidden">
+                    <div class="section column-container">
+                    <div class="column hpadding-small">
+                        <strong>Forename:</strong><br>
+                        <input class="specialist-forename-input" type="text" placeholder="Forename...">
+                    </div>
+                    <div class="column hpadding-small">
+                        <strong>Surname:</strong><br>
+                        <input class="specialist-surname-input" type="text" placeholder="Surname...">
+                    </div>
+                </div>
+                </div>
+                <h2>Confirm:</h2>
+                <p>Create new ticket: <button class="new-ticket-button">Confirm</button></p>
+            </div>-->
+            <div class="column l12 hpadding-small vpadding-regular">
+                <h1>View Tickets:</h1>
+                <p>
+                    Show Ticket Types:
+                    <input class="type-pending-input" type="checkbox" checked> Pending
+                    <input class="type-open-input" type="checkbox" checked> Open
+                    <input class="type-closed-input" type="checkbox" checked> Closed
+                </p>
+                <p><a href="new-ticket.html"><button>Create New Ticket</button></a></p>
+                <p><strong>Click on an item to view the ticket:</strong></p>
+                <div class="ticket-container"></div>
+            </div>
+        </div>
+    </body>
+</html>
