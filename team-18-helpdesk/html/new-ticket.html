@@ -13,12 +13,12 @@
         <!-- Inline Styling -->
         
         <!-- Scripts -->
+        <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-database.js"></script>
         <script src="/team-18-helpdesk/external/date-format.js"></script>
         <script src="/team-18-helpdesk/scripts/new-ticket.js" defer></script>
         
         <!-- Inline Scripts -->
-        <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-database.js"></script>
     </head>
     
     <body>
@@ -37,7 +37,7 @@
         <div class="column-container content-width">
             <div class="column l12 hpadding-small vpadding-regular">
                 <h1 class="title">Create a new Ticket</h1>
-                <h2>Caller Information</h2>
+                <h2>Caller Information:</h2>
                 <p><input class="use-employee-id" type="checkbox" checked> Use employee ID</p>
                 <div class="employee-id-container">
                     <strong>Employee ID Number:</strong><br>
@@ -91,12 +91,17 @@
                     <strong>Software and Version:</strong><br>
                     <input class="problem-software-input" type="text" placeholder="Word 2010 v1.1.1">
                 </div>
+                <h2>Details:</h2>
                 <div class="section">
-                    <strong>Description of the problem:</strong><br>
-                    <textarea class="problem-description-input"></textarea>
+                    <strong>Short Summary of the Problem:</strong><br>
+                    <input class="summary-input" type="text" placeholder="Summary">
+                </div>
+                <div class="section">
+                    <strong>Full Description of the Problem:</strong><br>
+                    <textarea class="full-description-input" placeholder="Full Description"></textarea>
                 </div>
                 <h2>Specialist Information:</h2>
-                <p><input class="assign-specialist-checkbox" type="checkbox"> Assign specialist now</p>
+                <p><input class="assign-specialist-checkbox" type="checkbox" checked> Assign specialist now</p>
                 <div class="specialist-information">
                     <div class="section">
                         <strong>Specialist ID Number:</strong><br>

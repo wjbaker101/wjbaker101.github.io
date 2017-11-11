@@ -5,15 +5,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <title>View Ticket</title>
+        <title></title>
         
         <!-- Stylesheets and Fonts -->
         <link rel="stylesheet" href="/team-18-helpdesk/style/webstyle.css">
         
         <!-- Inline Styling -->
         <style>
-            .logs-container .call-log .details,
-            .logs-container .call-log .message
+            .ticket-container > div .top-content
             {
                 border-bottom: 1px solid #ccc;
             }
@@ -21,45 +20,44 @@
         
         <!-- Scripts -->
         <script src="/team-18-helpdesk/external/date-format.js"></script>
-        <script src="/team-18-helpdesk/scripts/data.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-database.js"></script>
-        <script src="/team-18-helpdesk/scripts/view-ticket.js" defer></script>
+        <script src="/team-18-helpdesk/scripts/assign-specialist.js" defer></script>
         
         <!-- Inline Scripts -->
+        <script>
+        </script>
     </head>
     
     <body>
         <header class="hpadding-small vpadding-regular">
             <div class="clearfix">
                 <div class="float-left">
-                    <a href="helpdesk.html">&lt;-- Return to tickets</a>
+                    <a class="return-link">&lt;-- Return to ticket</a>
                 </div>
                 <div class="float-right">
                     <strong>Logged in as:</strong>
-                    <span class="current-username">Dan French</span>
+                    <span class="current-username">Bob Harrison</span>
                     <span><a href="login.html">(Switch)</a></span>
                 </div>
             </div>
         </header>
         <div class="column-container content-width">
             <div class="column l12 hpadding-small vpadding-regular">
-                <h2>Viewing Ticket: Ticket <span class="ticket-id"></span></h2>
-                <div class="clearfix">
-                    <div class="float-left">
-                        <p>Click <button class="new-log-button">here</button> if you would like to create a new log.</p>
-                        <p>Click <button class="close-ticket-button">here</button> if you would like to close this ticket.</p>
-                        <p>Here are the call logs for this ticket:</p>
-                    </div>
-                    <div class="float-right">
-                        <p>
-                            <strong>Status: </strong><span class="ticket-status"></span><br>
-                            <strong>Assigned To: </strong><span class="specialist"></span><br>
-                            <strong>Type: </strong><span class="problem-type"></span>
-                        </p>
-                    </div>
+                <h1>Assign Specialist:</h1>
+                <h2>Specialist Information:</h2>
+                <div class="section">
+                    <strong>Specialist ID Number:</strong><br>
+                    <input class="specialist-id-input" type="text" placeholder="A1234567">
                 </div>
-                <div class="logs-container"></div>
+                <div class="section">
+                    <strong>Recommended Specialists:</strong><br>
+                    <p><button class="dans-button">Choose</button> Dan French</p>
+                    <p><button class="jims-button">Choose</button> Jim Bob</p>
+                    <p><button class="bobs-button">Choose</button> Bob Harrison</p>
+                </div>
+                <h2>Submit:</h2>
+                <p><button class="submit-button">Submit</button></p>
             </div>
         </div>
     </body>

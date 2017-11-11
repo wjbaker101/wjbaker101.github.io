@@ -1,82 +1,31 @@
-const formatDigits = i =>
-{
-    if (i < 10) return `0${i}`;
-    
-    return String(i);
-};
+'use strict';
 
-const formatDate = d =>
-{
-    const yyyy = d.getFullYear();
-    const mm = formatDigits(d.getMonth());
-    const dd = formatDigits(d.getDay());
-    
-    const date = `${yyyy}-${mm}-${dd}`;
-    
-    const h = formatDigits(d.getHours());
-    const i = formatDigits(d.getMinutes());
-    const s = formatDigits(d.getSeconds());
-    
-    const time = `${h}:${i}:${s}`;
-    
-    return `${date} ${time}`;
-};
+window.addEventListener('load', function () {
+    var logsContainer = document.querySelector('.logs-container');
 
-window.addEventListener('load', () =>
-{
-    const logsContainer = document.querySelector('.logs-container');
-    
-    const updateCallLogs = (update) =>
-    {
+    var updateCallLogs = function updateCallLogs(update) {
         logsContainer.innerHTML = '';
-        
-        const callLogs = Object.entries(update).sort((a, b) => a[1].callTime - b[1].callTime);
-        
-        callLogs.forEach(log =>
-        {
-            const logTime = new Date(log[1].callTime);
-            const formattedDate = dateFormat(logTime, 'dddd d mmmm yyyy @ HH:MM');
-            
-            const html = `
-                <div class="call-log section bg-white">
-                    <div class="details hpadding-small vpadding-small">
-                        <h3><strong>${formattedDate}</strong></h3>
-                        <div class="clearfix">
-                            <div class="float-left">
-                                <strong>Caller Name:</strong> ${log[1].caller.name} (<strong>ID: </strong> ${log[1].caller.id})<br>
-                                <strong>Job Title:</strong> ${log[1].caller.jobTitle}<br>
-                                <strong>Department:</strong> ${log[1].caller.department}<br>
-                                <strong>Telephone Number:</strong> ${log[1].caller.phoneNumber}<br>
-                            </div>
-                            <div class="float-right">
-                                <strong>Helpdesk Operator:</strong> Dan French
-                            </div>
-                        </div>
-                        <p><strong>Hardware Serial Number:</strong> ${log[1].hardware}</p>
-                        <p><strong>Software License ID:</strong> ${log[1].software}</p>
-                        <p><strong>Operating System Version:</strong> ${log[1].operatingSystem}</p>
-                    </div>
-                    <div class="message hpadding-small vpadding-small">
-                        <p>${log[1].description}</p>
-                    </div>
-                    <div class="hpadding-small vpadding-small">
-                        <p class="text-right"><button class="delete-log">Delete Log</button></p>
-                    </div>
-                </div>
-            `;
-            
+
+        var callLogs = Object.entries(update).sort(function (a, b) {
+            return a[1].callTime - b[1].callTime;
+        });
+
+        callLogs.forEach(function (log) {
+            var logTime = new Date(log[1].callTime);
+            var formattedDate = dateFormat(logTime, 'dddd d mmmm yyyy @ HH:MM');
+
+            var html = '\n                <div class="call-log section bg-white">\n                    <div class="details hpadding-small vpadding-small">\n                        <h3><strong>' + formattedDate + '</strong></h3>\n                        <div class="clearfix">\n                            <div class="float-left">\n                                <strong>Caller Name:</strong> ' + log[1].caller.name + ' (<strong>ID: </strong> ' + log[1].caller.id + ')<br>\n                                <strong>Job Title:</strong> ' + log[1].caller.jobTitle + '<br>\n                                <strong>Department:</strong> ' + log[1].caller.department + '<br>\n                                <strong>Telephone Number:</strong> ' + log[1].caller.phoneNumber + '<br>\n                            </div>\n                            <div class="float-right">\n                                <strong>Helpdesk Operator:</strong> Dan French\n                            </div>\n                        </div>\n                        <p><strong>Hardware Serial Number:</strong> ' + log[1].hardware + ' (Licensed!)</p>\n                        <p><strong>Software License ID:</strong> ' + log[1].software + ' (Licensed!)</p>\n                        <p><strong>Operating System Version:</strong> ' + log[1].operatingSystem + ' (Licensed!)</p>\n                    </div>\n                    <div class="message hpadding-small vpadding-small">\n                        <p>' + log[1].description + '</p>\n                    </div>\n                    <div class="hpadding-small vpadding-small">\n                        <p class="text-right"><button class="delete-log">Delete Log</button></p>\n                    </div>\n                </div>\n            ';
+
             logsContainer.innerHTML += html;
         });
     };
-    
-    if (window.location.hash)
-    {
-        const hash = window.location.hash.substring(1);
-        
+
+    if (window.location.hash) {
+        var hash = window.location.hash.substring(1);
+
         document.querySelector('.ticket-id').innerHTML = hash;
-        
-        const config =
-        {
+
+        var config = {
             apiKey: "AIzaSyAsjefipXMkd79s2AJGu8O4IpvvYKq8o5Q",
             authDomain: "team-18-helpdesk.firebaseapp.com",
             databaseURL: "https://team-18-helpdesk.firebaseio.com",
@@ -84,60 +33,46 @@ window.addEventListener('load', () =>
             storageBucket: "",
             messagingSenderId: "1003689053447"
         };
-        
+
         if (!firebase.apps.length) firebase.initializeApp(config);
-        
-        const database = firebase.database().ref(`/tickets/${hash}`);
-        
-        database.on('value', (snapshot) =>
-        {
-            const ticket = snapshot.val();
-            
-            const status = (ticket.specialist === null) ? 'Pending' : ((ticket.closed) ? 'Closed' : 'Open');
-            
-            document.querySelector('.ticket-status').innerHTML = status;
+
+        var database = firebase.database().ref('/tickets/' + hash);
+
+        database.on('value', function (snapshot) {
+            var ticket = snapshot.val();
+
+            var status = !ticket.specialist ? 0 : ticket.closed ? 2 : 1;
+
+            var statusFormatted = 'Closed';
+
+            if (status === 0) {
+                statusFormatted = 'Pending <a href="assign-specialist.html#' + hash + '"><button>Assign Now</button></a>';
+            }
+
+            if (status === 1) {
+                statusFormatted = 'Open';
+
+                document.querySelector('.specialist').innerHTML = ticket.specialist.name + ' <a href="assign-specialist.html#' + hash + '"><button>Switch</button></a>';
+            }
+
+            document.querySelector('.ticket-status').innerHTML = statusFormatted;
             document.querySelector('.problem-type').innerHTML = ticket.problemType;
-            //document.querySelector('.os-id').innerHTML = `${ticket.operatingSystem} (Licensed!)`;
-            //document.querySelector('.problem-software').innerHTML = `${ticket.software} (Licensed!)`;
-            
-            if (ticket.logs)
-                updateCallLogs(ticket.logs);
-        });
-            
-        const newLogButton = document.querySelector('.new-log-button');
 
-        newLogButton.addEventListener('click', () =>
-        {
-            location.href = `new-ticket.html#${hash}`
+            if (ticket.logs) updateCallLogs(ticket.logs);
         });
-    
-        /*const submitLogButton = document.querySelector('.submit-log-button');
-        const newLogInput = document.querySelector('.new-log-input');
 
-        submitLogButton.addEventListener('click', () =>
-        {
-            if (newLogInput.value.length === 0) return;
+        var newLogButton = document.querySelector('.new-log-button');
 
-            const newLog = { time: new Date().getTime(), message: newLogInput.value };
-            
-            database.child('logs').push().set(newLog);
+        newLogButton.addEventListener('click', function () {
+            location.href = 'new-ticket.html#' + hash;
         });
-        
-        const deleteButton = document.querySelector('.delete-log-button');
-        
-        deleteButton.addEventListener('click', () =>
-        {
-            const confirmation = confirm('Are you sure you want to delete this log?');
-            
-            if (!confirmation) return;
-            
-            database.set(null);
-            
-            location.href = 'helpdesk.html';
-        });*/
-    }
-    else
-    {
+
+        var closeTicketButton = document.querySelector('.close-ticket-button');
+
+        closeTicketButton.addEventListener('click', function () {
+            location.href = 'close-ticket.html#' + hash;
+        });
+    } else {
         throw new Error('Ticket ID invalid.');
     }
 });
