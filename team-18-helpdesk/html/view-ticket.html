@@ -21,7 +21,6 @@
         
         <!-- Scripts -->
         <script src="/team-18-helpdesk/external/date-format.js"></script>
-        <script src="/team-18-helpdesk/scripts/data.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-database.js"></script>
         <script src="/team-18-helpdesk/scripts/view-ticket.js" defer></script>
@@ -44,11 +43,10 @@
         </header>
         <div class="column-container content-width">
             <div class="column l12 hpadding-small vpadding-regular">
-                <h2>Viewing Ticket: Ticket <span class="ticket-id"></span></h2>
+                <h2>Viewing Ticket: <span class="ticket-id"></span></h2>
                 <div class="clearfix">
                     <div class="float-left">
-                        <p>Click <button class="new-log-button">here</button> if you would like to create a new log.</p>
-                        <p>Click <button class="close-ticket-button">here</button> if you would like to close this ticket.</p>
+                        <p><button class="new-log-button">Create New Log</button><button class="close-ticket-button">Close Ticket</button></p>
                         <p>Here are the call logs for this ticket:</p>
                     </div>
                     <div class="float-right">
@@ -60,6 +58,8 @@
                     </div>
                 </div>
                 <div class="logs-container"></div>
+                <p><button class="delete-ticket">Permanently Delete Ticket</button></p>
+                <p><em><strong>Warning: </strong>This action cannot by undone.</em></p>
             </div>
         </div>
     </body>
