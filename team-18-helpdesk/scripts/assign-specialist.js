@@ -1,7 +1,7 @@
-window.addEventListener('load', () =>
-{
-    const config =
-    {
+"use strict";
+
+window.addEventListener('load', function () {
+    var config = {
         apiKey: "AIzaSyAsjefipXMkd79s2AJGu8O4IpvvYKq8o5Q",
         authDomain: "team-18-helpdesk.firebaseapp.com",
         databaseURL: "https://team-18-helpdesk.firebaseio.com",
@@ -12,50 +12,41 @@ window.addEventListener('load', () =>
 
     if (!firebase.apps.length) firebase.initializeApp(config);
 
-    if (window.location.hash)
-    {
-        const hash = window.location.hash.substring(1);
-    
-        document.querySelector('.return-link').href = `view-ticket.html#${hash}`;
-        
-        const specialistID = document.querySelector('.specialist-id-input');
-    
-        document.querySelector('.dans-button').addEventListener('click', () =>
-        {
+    if (window.location.hash) {
+        var hash = window.location.hash.substring(1);
+
+        document.querySelector('.return-link').href = "view-ticket.html#" + hash;
+
+        var specialistID = document.querySelector('.specialist-id-input');
+
+        document.querySelector('.dans-button').addEventListener('click', function () {
             specialistID.value = 'A8660251';
         });
 
-        document.querySelector('.jims-button').addEventListener('click', () =>
-        {
+        document.querySelector('.jims-button').addEventListener('click', function () {
             specialistID.value = 'A9585866';
         });
 
-        document.querySelector('.bobs-button').addEventListener('click', () =>
-        {
+        document.querySelector('.bobs-button').addEventListener('click', function () {
             specialistID.value = 'A0026451';
         });
-        
-        const submitButton = document.querySelector('.submit-button');
-        
-        submitButton.addEventListener('click', () =>
-        {
-            const database = firebase.database().ref(`/tickets/${hash}`);
-            
-            database.once('value').then((snapshot) =>
-            {
-                let ticket = snapshot.val();
+
+        var submitButton = document.querySelector('.submit-button');
+
+        submitButton.addEventListener('click', function () {
+            var database = firebase.database().ref("/tickets/" + hash);
+
+            database.once('value').then(function (snapshot) {
+                var ticket = snapshot.val();
 
                 ticket.specialist = { id: specialistID.value, name: 'Bob Harrison' };
 
-                database.set(ticket).then(() =>
-                {
+                database.set(ticket).then(function () {
                     location.href = 'specialist.html';
                 });
             });
         });
-    }
-    else
-    {
+    } else {
         throw new Error('No ticket ID.');
     }
 });

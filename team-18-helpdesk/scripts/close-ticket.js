@@ -1,7 +1,7 @@
-window.addEventListener('load', () =>
-{
-    const config =
-    {
+"use strict";
+
+window.addEventListener('load', function () {
+    var config = {
         apiKey: "AIzaSyAsjefipXMkd79s2AJGu8O4IpvvYKq8o5Q",
         authDomain: "team-18-helpdesk.firebaseapp.com",
         databaseURL: "https://team-18-helpdesk.firebaseio.com",
@@ -12,54 +12,46 @@ window.addEventListener('load', () =>
 
     if (!firebase.apps.length) firebase.initializeApp(config);
 
-    if (window.location.hash)
-    {
-        const hash = window.location.hash.substring(1);
-    
-        const database = firebase.database().ref(`/tickets/${hash}`);
-        
-        database.once('value').then((snapshot) =>
-        {
-            const ticket = snapshot.val();
-            
-            console.log(ticket);
-            
-            document.querySelector('.ticket-id').innerHTML = `Ticket ${hash}`;
-        
-            const closeButton = document.querySelector('.submit-button');
+    if (window.location.hash) {
+        var hash = window.location.hash.substring(1);
 
-            closeButton.addEventListener('click', () =>
-            {
-                const description = document.querySelector('.resolution-input').value;
-                
+        var database = firebase.database().ref("/tickets/" + hash);
+
+        database.once('value').then(function (snapshot) {
+            var ticket = snapshot.val();
+
+            console.log(ticket);
+
+            document.querySelector('.ticket-id').innerHTML = "Ticket " + hash;
+
+            var closeButton = document.querySelector('.submit-button');
+
+            closeButton.addEventListener('click', function () {
+                var description = document.querySelector('.resolution-input').value;
+
                 if (description.length === 0) return;
-                
-                const confirmation = confirm('Close this ticket?');
-                
+
+                var confirmation = confirm('Close this ticket?');
+
                 if (!confirmation) return;
-                
-                let closedTicket = ticket;
+
+                var closedTicket = ticket;
                 closedTicket.closed = true;
-                
+
                 database.set(closedTicket);
-                
-                database.child('resolution').set(
-                {
+
+                database.child('resolution').set({
                     specialist: 'Bob Harrison',
-                    closeTime: (new Date()).getTime(),
+                    closeTime: new Date().getTime(),
                     message: description
-                })
-                .then(() =>
-                {
+                }).then(function () {
                     location.href = 'specialist.html';
                 });
             });
         });
-        
-        document.querySelector('.return-link').href = `view-ticket.html#${hash}`;
-    }
-    else
-    {
+
+        document.querySelector('.return-link').href = "view-ticket.html#" + hash;
+    } else {
         throw new Error('No ticket ID.');
     }
 });
