@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>Links</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <style>
+            html,
+            body,
+            .links-container {
+                height: 100%;
+            }
+
+            body {
+                margin: 0;
+                font-size: 18px;
+                font-family: sans-serif;
+                line-height: 1.8em;
+                letter-spacing: 1px;
+                background-color: rgb(226, 238, 238);
+                color: #444;
+            }
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+
+            h1 {
+                margin: 4rem 0;
+                text-align: center;
+                color: #000;
+            }
+
+            .content-container {
+                max-width: 720px;
+                margin: 0 auto;
+            }
+
+            .links-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-gap: 1rem;
+            }
+
+            .links-container > * {
+                grid-column-start: span 1;
+            }
+
+            .link-container {
+                padding: 1rem;
+                text-align: center;
+                background-color: #fff;
+                border-radius: 0.2rem;
+                box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.25);
+                transition: box-shadow 0.5s;
+            }
+
+            .link-container:hover {
+                box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.5);
+            }
+        </style>
+
+        <script async defer>
+            class Link {
+                constructor(title, link) {
+                    this.title = title;
+                    this.link = link;
+                }
+
+                getHTML() {
+                    return `
+                        <a class="link-container" href="${this.link}">
+                            <h2>${this.title}</h2>
+                        </a>
+                    `;
+                }
+            }
+
+            const links = [
+                new Link('Album Slideshow', '/album-slideshow/'),
+            ];
+
+            window.addEventListener('load', () => {
+                const container = document.querySelector('.links-container');
+
+                links.forEach(link => {
+                    container.innerHTML += link.getHTML();
+                });
+            })
+        </script>
+    </head>
+
+    <body>
+        <div class="content-container">
+            <h1>Links</h1>
+            <div class="links-container"></div>
+        </div>
+    </body>
+</html>
